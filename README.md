@@ -1,5 +1,6 @@
-# EXLaunchAdvert
-APP启动时显示开屏广告的库
+# 介绍
+EXLaunchAdvert 是APP启动时显示开屏广告的库
+
 
 
 # 安装方式
