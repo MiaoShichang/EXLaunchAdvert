@@ -7,7 +7,7 @@ EXLaunchAdvert 是APP启动时显示开屏广告的库
 
   在文件 `Podfile` 中加入以下内容：
  ```
- pod 'CYLTabBarController', '~> 1.24.0'
+ pod 'EXLaunchAdvert'
  ``` 
   然后在终端中运行以下命令：
  ```
