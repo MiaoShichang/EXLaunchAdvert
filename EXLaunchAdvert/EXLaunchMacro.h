@@ -9,48 +9,46 @@
 #ifndef EXLaunchMacro_h
 #define EXLaunchMacro_h
 
-
 /*
  autoreleasepool{} 和 try{} @finally{} 是为了和@符号一块使用
- if(){} 是为了消除object 未使用的警告
  */
-#ifndef weakify
+#ifndef weakSelf
     #if DEBUG
         #if __has_feature(objc_arc)
-            #define weakify(object) autoreleasepool{} \
-                __weak __typeof__(object) weak##_##object = object;if(weak##_##object){}
+            #define weakSelf(object) autoreleasepool{} \
+                __weak __typeof__(object) weak##__##object = object;
         #else
-            #define weakify(object) autoreleasepool{} \
-                __block __typeof__(object) block##_##object = object;if(block##_##object){}
+            #define weakSelf(object) autoreleasepool{} \
+                __block __typeof__(object) block##__##object = object;
         #endif
     #else
         #if __has_feature(objc_arc)
-            #define weakify(object) try{} @finally{} \
-                __weak __typeof__(object) weak##_##object = object{};if(weak##_##object){}
+            #define weakSelf(object) try{} @finally{} \
+                __weak __typeof__(object) weak##__##object = object;
         #else
-            #define weakify(object) try{} @finally{} \
-                __block __typeof__(object) block##_##object = object;if(block##_##object){}
+            #define weakSelf(object) try{} @finally{} \
+                __block __typeof__(object) block##__##object = object;
         #endif
     #endif
 #endif
 
 
-#ifndef strongify
+#ifndef strongSelf
     #if DEBUG
         #if __has_feature(objc_arc)
-            #define strongify(object) autoreleasepool{} \
-                __typeof__(object) object = weak##_##object;if(object){}
+            #define strongSelf(object) autoreleasepool{} \
+                __typeof__(object) object = weak##__##object;
         #else
-            #define strongify(object) autoreleasepool{} \
-                __typeof__(object) object = block##_##object;if(object){}
+            #define strongSelf(object) autoreleasepool{} \
+                __typeof__(object) object = block##__##object;
         #endif
     #else
         #if __has_feature(objc_arc)
-            #define strongify(object) try{} @finally{} \
-                __typeof__(object) object = weak##_##object;if(object){}
+            #define strongSelf(object) try{} @finally{} \
+                __typeof__(object) object = weak##__##object;
         #else
-            #define strongify(object) try{} @finally{} \
-                __typeof__(object) object = block##_##object;if(object){}
+            #define strongSelf(object) try{} @finally{} \
+                __typeof__(object) object = block##__##object;
         #endif
     #endif
 #endif

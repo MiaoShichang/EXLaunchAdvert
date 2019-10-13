@@ -10,15 +10,27 @@
 #import "EXLaunchMacro.h"
 
 @interface EXLaunchTimer()
+{
+    dispatch_source_t timer;
+}
+
 @property (nonatomic, assign) CFAbsoluteTime startTime;
 @property (nonatomic, assign) CFAbsoluteTime enterForegroundTime;
 
 @property (nonatomic, assign, readwrite) CGFloat duration; // timer 从开始启动到现在的持续时间
-@property (nonatomic, strong) dispatch_source_t timer;
+
 
 @end
 
 @implementation EXLaunchTimer
+
+- (dispatch_source_t)timer {
+    return timer;
+}
+
+- (void)setTimer:(dispatch_source_t)timer {
+    self->timer = timer;
+}
 
 - (id)init{
     if (self = [super init]) {
@@ -44,10 +56,10 @@
     self.timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0));
     dispatch_source_set_timer(self.timer, dispatch_walltime(NULL, 0), self.interval * NSEC_PER_SEC, 0);
     
-    @weakify(self)
+    @weakSelf(self);
     dispatch_source_set_event_handler(self.timer, ^{
         dispatch_async(dispatch_get_main_queue(), ^{
-            @strongify(self)
+            @strongSelf(self);
             if (self.eventBlock) {
                 CFAbsoluteTime current = CFAbsoluteTimeGetCurrent();
                 self.duration = current - self.startTime;

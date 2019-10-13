@@ -47,9 +47,9 @@
     self.closeBtn.frame = CGRectMake(self.view.bounds.size.width-60, 64, 40, 40);
     [self.view addSubview:self.closeBtn];
     
-    @weakify(self);
+    @weakSelf(self);
     self.closeBtn.complete = ^(EXLaunchCloseButton * _Nonnull btn, EXLaunchCloseButtonEvent event) {
-        @strongify(self);
+        @strongSelf(self);
         if(event == EXLaunchCloseButtonEventClick){
             [self sendEvent:EXLaunchEventClickCloseButton];
         }

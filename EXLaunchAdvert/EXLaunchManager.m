@@ -63,9 +63,9 @@
     }
     
     if(self.delegate && [self.delegate respondsToSelector:@selector(launchManager:configAdvertBlcok:)]){
-        @weakify(self);
+        @weakSelf(self);
         [self.delegate launchManager:self configAdvertBlcok:^(EXLaunchAdvert * _Nonnull advert) {
-            @strongify(self);
+            @strongSelf(self);
             [self setAdvert:advert];
         }];
     }

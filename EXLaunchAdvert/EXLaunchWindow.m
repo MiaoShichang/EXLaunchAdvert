@@ -35,9 +35,9 @@
         return;
     }
     self.rootViewController = [[EXLaunchRootViewController alloc] init];
-    @weakify(self);
+    @weakSelf(self);
     self.rootViewController.dismiss = ^(void) {
-        @strongify(self);
+        @strongSelf(self);
         [self dismiss];
     };
     UIWindow *window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
@@ -56,9 +56,9 @@
         [self.waitTimer cancel];
         self.waitTimer = nil;
     }
-    @weakify(self);
+    @weakSelf(self);
     self.waitTimer = [EXLaunchTimer timerWithInterval:0.2 withEventBlock:^(EXLaunchTimer * _Nonnull timer) {
-        @strongify(self);
+        @strongSelf(self);
         if (self.eanbleAdvert) {
             [self.waitTimer cancel];
         }

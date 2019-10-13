@@ -18,7 +18,7 @@ Pod::Spec.new do |spec|
   spec.homepage     = "https://github.com/MiaoShichang/EXLaunchAdvert"
   spec.license      = "MIT"
   spec.author             = { "MiaoShichang" => "miaoshichang@126.com" }
-  spec.platform     = :ios, "10.0"
+  spec.platform     = :ios
   spec.source       = { :git => "https://github.com/MiaoShichang/EXLaunchAdvert.git", :tag => "#{spec.version}" }
   spec.source_files  = "EXLaunchAdvert", "EXLaunchAdvert/**/*.{h,m}"
 

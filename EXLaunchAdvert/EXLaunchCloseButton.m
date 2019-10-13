@@ -96,9 +96,9 @@
     self.timeLabel.text = [NSString stringWithFormat:@"%lds", (long)self.duration];
     
     // title 倒计时器
-    @weakify(self);
+    @weakSelf(self);
     self.titleTimer = [EXLaunchTimer timerWithInterval:1 withEventBlock:^(EXLaunchTimer * _Nonnull timer) {
-        @strongify(self);
+        @strongSelf(self);
         NSInteger counter = self.duration-timer.duration;
         if (counter < 0) {
             counter = 0;
@@ -116,7 +116,7 @@
     // 圆环进度计时器
     CGFloat interval = 0.05; // 进度间隔时间
     self.roundTimer = [EXLaunchTimer timerWithInterval:interval withEventBlock:^(EXLaunchTimer * _Nonnull timer) {
-        @strongify(self);
+        @strongSelf(self);
         
         if (self.roundTimer.duration < self.duration) {
             self.roundLayer.strokeStart = self.roundTimer.duration / self.duration;
