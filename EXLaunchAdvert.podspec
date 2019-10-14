@@ -9,7 +9,7 @@
 Pod::Spec.new do |spec|
 
   spec.name         = "EXLaunchAdvert"
-  spec.version      = "0.0.1"
+  spec.version      = "0.0.3"
   spec.summary      = "开屏广告."
   spec.description  = <<-DESC
 			APP启动时显示开屏广告的库
@@ -18,9 +18,11 @@ Pod::Spec.new do |spec|
   spec.homepage     = "https://github.com/MiaoShichang/EXLaunchAdvert"
   spec.license      = "MIT"
   spec.author             = { "MiaoShichang" => "miaoshichang@126.com" }
-  spec.platform     = :ios
+  spec.platform     = :ios, "8.0"
+
   spec.source       = { :git => "https://github.com/MiaoShichang/EXLaunchAdvert.git", :tag => "#{spec.version}" }
   spec.source_files  = "EXLaunchAdvert", "EXLaunchAdvert/**/*.{h,m}"
 
+  spec.requires_arc = true
 
 end
