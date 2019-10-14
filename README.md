@@ -13,3 +13,5 @@ EXLaunchAdvert 是APP启动时显示开屏广告的库
  ```
  pod install
  ```
+
+# 使用方式
